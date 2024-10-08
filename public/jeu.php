@@ -73,7 +73,7 @@
                     $stmt->bindParam(1, $_SESSION['player1']);
                     $stmt->bindParam(2, $_SESSION['player2']);
                     $stmt->bindParam(3, $_SESSION['word']);
-                    $stmt->bindParam(4, $_SESSION['shot']);
+                    $stmt->bindParam(4, $_SESSION['shotBase']);
                     if($_SESSION['wordFind']===false){
                         $stmt->bindParam(5, $_SESSION['player1']);
                     } else {
@@ -89,14 +89,14 @@
                 
             } else {
                 echo "
-                    <div>
+                    <div class='inputError'>
                         <p>Vous avez déjà choisi cette lettre</p>
                     </div>";
             }
 
         } else {
             echo "
-            <div>
+            <div class='inputError'>
                 <p>Vous n'avez pas complété correctement les informations</p>
             </div>";
         }

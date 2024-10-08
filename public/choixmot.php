@@ -13,11 +13,12 @@
     if (!empty($_POST['word']) && !empty($_POST['shot'])){
         $_SESSION['word'] = strtoupper($_POST['word']);
         $_SESSION['shot'] = intval($_POST['shot']);
+        $_SESSION['shotBase'] = intval($_POST['shot']);
         header('Location: jeu.php?traitement=OK');
         exit(0);
     } else {
         echo "
-        <div>
+        <div class='inputError'>
             <p>Vous n'avez pas complété correctement les informations</p>
         </div>";
     }
