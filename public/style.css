@@ -20,8 +20,48 @@ h2 {
     font-size: 35px;
 }
 
-.playerForm{
+.mainContainer {
+    display: flex;
+}
 
+.playerForm{
+    width: 50vw;
+    margin-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerForm form {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.scoreBoard {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.scoreBoard table {
+    width: 40vw;
+    height: 30vh;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.scoreBoard table .defaultLine{
+    font-weight: 600;
+}
+
+.scoreBoard table td {
+    border: 2px solid black;
 }
 
 .containerLetter {

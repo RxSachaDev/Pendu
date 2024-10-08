@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1>Pendu</h1>
+        <h1>Jeu du Pendu</h1>
     </header>
     
     
