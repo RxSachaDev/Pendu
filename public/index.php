@@ -11,6 +11,7 @@
 </form>
 <?php
     $_SESSION['letter'] = [];
+    
    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (!empty($_POST['player1']) && !empty($_POST['player2'])){
         $_SESSION['player1'] = $_POST['player1'];

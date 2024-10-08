@@ -1,5 +1,4 @@
 <?php
-    ob_start();
     require_once('header.php');
 
     echo'
@@ -41,6 +40,7 @@
 
 <?php
     $shot = $_SESSION['shot'];
+    $connection = getConnection();
     $_SESSION['wordFind'] = true;
     echo"<p>$shot</p>";
 
@@ -65,6 +65,24 @@
                     header('Location: jeu.php?traitement=OK');
                     exit();
                 } else {
+                                    // Préparation de la requête SQL en utilisant des requêtes préparées
+                    $sql = "INSERT INTO partie (player1, player2, word, shot, winner) VALUES (?, ?, ?, ?, ?)";
+                    $stmt = $connection->prepare($sql);
+                    
+                    // Liaison des paramètres avec les valeurs
+                    $stmt->bindParam(1, $_SESSION['player1']);
+                    $stmt->bindParam(2, $_SESSION['player2']);
+                    $stmt->bindParam(3, $_SESSION['word']);
+                    $stmt->bindParam(4, $_SESSION['shot']);
+                    if($_SESSION['wordFind']===false){
+                        $stmt->bindParam(5, $_SESSION['player1']);
+                    } else {
+                        $stmt->bindParam(5, $_SESSION['player2']);
+                    }
+                    echo"<div>";
+
+                    // Exécution de la requête
+                    $stmt ->execute();
                     header('Location: fin.php?traitement=OK');
                     exit();
                 }
