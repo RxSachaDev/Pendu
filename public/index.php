@@ -13,8 +13,10 @@
     $_SESSION['letter'] = [];
    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (!empty($_POST['player1']) && !empty($_POST['player2'])){
+        $_SESSION['player1'] = $_POST['player1'];
+        $_SESSION['player2'] = $_POST['player2'];
         header('Location: choixmot.php?traitement=OK');
-        exit(0);
+        exit();
     } else {
         echo "
         <div>
