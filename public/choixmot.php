@@ -12,8 +12,8 @@
 <?php
    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (!empty($_POST['word']) && !empty($_POST['shot'])){
-        $_SESSION['word'] = $_POST['word'];
-        $_SESSION['shot'] = $_POST['shot'];
+        $_SESSION['word'] = strtoupper($_POST['word']);
+        $_SESSION['shot'] = intval($_POST['shot']);
         header('Location: jeu.php?traitement=OK');
         exit(0);
     } else {

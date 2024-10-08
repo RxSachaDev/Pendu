@@ -10,6 +10,7 @@
     <button type="submit" class="button">Continuer</button>
 </form>
 <?php
+    $_SESSION['letter'] = [];
    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (!empty($_POST['player1']) && !empty($_POST['player2'])){
         header('Location: choixmot.php?traitement=OK');
