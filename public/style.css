@@ -117,3 +117,23 @@ h2 {
     background-color: green;
     color: white;
 }
+
+.result {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 10vh;
+}
+
+.restart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.restart button {
+    background-color: darkslateblue;
+    color: white;
+    font-size: 30px;
+    padding: 2vh;
+}

@@ -26,14 +26,17 @@
             <?php
                 $connection = getConnection();
                 $sql = "Select * from partie order by id_game desc";
-                foreach ($connection ->query($sql) as $row) {
-                    echo"<tr>
-                            <td>{$row['player1']}</td>
-                            <td>{$row['player2']}</td>
-                            <td>{$row['word']}</td>
-                            <td>{$row['shot']}</td>
-                            <td>{$row['winner']}</td>
-                        </tr>";
+                $i = 0;
+                $rows = $connection->query($sql)->fetchAll();
+                $rowCount = count($rows);
+                for ($i = 0; $i < 10 && $i < $rowCount; $i++) {
+                    echo "<tr>
+                            <td>{$rows[$i]['player1']}</td>
+                            <td>{$rows[$i]['player2']}</td>
+                            <td>{$rows[$i]['word']}</td>
+                            <td>{$rows[$i]['shot']}</td>
+                            <td>{$rows[$i]['winner']}</td>
+                          </tr>";
                 }
             ?>
         </table>

@@ -113,9 +113,9 @@
     letterTable.forEach(element => {
         let lettre = document.getElementById(element);
         if (wordToFind.includes(element)) {
-                lettre.classList.add('true'); // Ajoute la classe 'true'
+                lettre.classList.add('true');
         } else {
-            lettre.classList.add('false'); // Ajoute la classe 'false'
+            lettre.classList.add('false');
         }
     });
 </script>

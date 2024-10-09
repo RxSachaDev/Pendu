@@ -23,10 +23,12 @@
     
 ?>
 
-<!-- Formulaire pour recommencer une partie -->
-<form action="" method="post">
-    <button type="submit" name="restart">Recommencer une partie</button>
-</form>
+<div class='restart'>
+    <form action="" method="post">
+        <button type="submit" name="restart">Recommencer une partie</button>
+    </form>
+</div>
+
 
 <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
