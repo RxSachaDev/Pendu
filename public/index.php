@@ -53,7 +53,7 @@
     } else {
         echo "
         <div class='inputError'>
-            <p>Vous n'avez pas complété correctement les informations</p>
+            <p>Vous n'avez pas complété correctement les informations !</p>
         </div>";
     }
    }

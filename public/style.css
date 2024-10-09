@@ -68,4 +68,52 @@ h2 {
     display: flex;
     justify-content: center;
     gap: 1vw;
+    margin-bottom: 10vh;
+    font-size: 30px;
+}
+
+.word {
+    padding-left: 44vw;
+    margin-bottom: 10vh;
+}
+
+.word table {
+    font-size: 30px;
+}
+
+.word td {
+    width: 2vw;
+}
+
+.researchForm {
+    padding-left: 35vw;
+    margin-bottom: 10vh;
+}
+
+.researchForm form {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.nbShot {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 10vh;
+}
+
+.inputError {
+    color: red;
+    text-align: center;
+    font-size: 25px;
+}
+
+.false {
+    background-color: red;
+    color: white;
+}
+
+.true {
+    background-color: green;
+    color: white;
 }

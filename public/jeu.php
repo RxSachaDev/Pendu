@@ -6,43 +6,48 @@
     $ASCII = 65;
     for ($cpt = 0; $cpt<26; $cpt++){
         $LETTRE = chr($ASCII);
-        echo"<p class='letter'>$LETTRE</p>";
+        echo"<p id='$LETTRE'>$LETTRE</p>";
         $ASCII++;
     }
     echo'</div>';
 ?>
-<table id="word">
-    <tr>
-        <?php
-            $sizeWord = strlen($_SESSION['word']);
-            $mot = $_SESSION['word'];
-            for ($i = 0; $i < $sizeWord; $i++){
-                if (!empty($_SESSION['letter']) && in_array($mot[$i], $_SESSION['letter']))
-                {
-                    echo "
-                        <td id='$i'>$mot[$i]</td>
-                    ";
-                } else {
-                    echo "
-                        <td id='$i'>_</td>
-                    ";
+<div class='word'>
+    <table id="word">
+        <tr>
+            <?php
+                $sizeWord = strlen($_SESSION['word']);
+                $mot = $_SESSION['word'];
+                for ($i = 0; $i < $sizeWord; $i++){
+                    if (!empty($_SESSION['letter']) && in_array($mot[$i], $_SESSION['letter']))
+                    {
+                        echo "
+                            <td id='$i'>$mot[$i]</td>
+                        ";
+                    } else {
+                        echo "
+                            <td id='$i'>_</td>
+                        ";
+                    }
+                    
                 }
-                
-            }
-        ?>
-    </tr>
-</table>
+            ?>
+        </tr>
+    </table>
+</div>
 
-<form method="post">
-    <input type="text" maxlength="1" name="letterChoose">
-    <button type="submit" class=".button">Continuer</button>
-</form>
+<div class='researchForm'>
+    <form method="post">
+        <input type="text" maxlength="1" name="letterChoose">
+        <button type="submit" class=".button">Continuer</button>
+    </form>
+</div>
+
 
 <?php
     $shot = $_SESSION['shot'];
     $connection = getConnection();
     $_SESSION['wordFind'] = true;
-    echo"<p>$shot</p>";
+    echo"<div class='nbShot'><p>Nombre de coups : $shot</p></div>";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -79,7 +84,6 @@
                     } else {
                         $stmt->bindParam(5, $_SESSION['player2']);
                     }
-                    echo"<div>";
 
                     // Exécution de la requête
                     $stmt ->execute();
@@ -90,15 +94,28 @@
             } else {
                 echo "
                     <div class='inputError'>
-                        <p>Vous avez déjà choisi cette lettre</p>
+                        <p>Vous avez déjà choisi cette lettre !</p>
                     </div>";
             }
 
         } else {
             echo "
             <div class='inputError'>
-                <p>Vous n'avez pas complété correctement les informations</p>
+                <p>Vous n'avez pas complété correctement les informations !</p>
             </div>";
         }
     }
 ?>
+<script>
+    let letterTable = <?php echo json_encode($_SESSION['letter']); ?>;
+    let wordToFind = <?php echo json_encode($_SESSION['word']); ?>;
+
+    letterTable.forEach(element => {
+        let lettre = document.getElementById(element);
+        if (wordToFind.includes(element)) {
+                lettre.classList.add('true'); // Ajoute la classe 'true'
+        } else {
+            lettre.classList.add('false'); // Ajoute la classe 'false'
+        }
+    });
+</script>
