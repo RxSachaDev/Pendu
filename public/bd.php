@@ -1,7 +1,7 @@
 <?php
     function getConnection() {
         try {
-            $connection = new PDO('mysql:host=localhost;dbname=pendu', 'root', '');
+            $connection = new PDO('mysql:host=localhost;dbname=pendu', 'root', 'azerty');
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connection;
         } catch (Exception $e) {

@@ -29,15 +29,22 @@
                 $i = 0;
                 $rows = $connection->query($sql)->fetchAll();
                 $rowCount = count($rows);
-                for ($i = 0; $i < 10 && $i < $rowCount; $i++) {
+                if ($rowCount > 0){
+                    for ($i = 0; $i < 10 && $i < $rowCount; $i++) {
+                        echo "<tr>
+                                <td>{$rows[$i]['player1']}</td>
+                                <td>{$rows[$i]['player2']}</td>
+                                <td>{$rows[$i]['word']}</td>
+                                <td>{$rows[$i]['shot']}</td>
+                                <td>{$rows[$i]['winner']}</td>
+                              </tr>";
+                    }
+                } else {
                     echo "<tr>
-                            <td>{$rows[$i]['player1']}</td>
-                            <td>{$rows[$i]['player2']}</td>
-                            <td>{$rows[$i]['word']}</td>
-                            <td>{$rows[$i]['shot']}</td>
-                            <td>{$rows[$i]['winner']}</td>
-                          </tr>";
+                            <td colspan = 5>Aucune partie n'a été lancée</td>
+                        </tr>";
                 }
+                
             ?>
         </table>
     </div>

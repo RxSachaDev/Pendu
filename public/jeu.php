@@ -51,7 +51,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        if (!empty($_POST['letterChoose'])){
+        if (!empty($_POST['letterChoose']) && strlen($_POST['letterChoose']) === 1){
 
             if (!in_array(strtoupper($_POST['letterChoose']), $_SESSION['letter'])){
                 array_push($_SESSION['letter'], strtoupper($_POST['letterChoose']));
