@@ -15,10 +15,10 @@
     <table id="word">
         <tr>
             <?php
-                $sizeWord = strlen($_SESSION['word']);
-                $mot = $_SESSION['word'];
+                $sizeWord = strlen($_SESSION[SessionKey::Word->value]);
+                $mot = $_SESSION[SessionKey::Word->value];
                 for ($i = 0; $i < $sizeWord; $i++){
-                    if (!empty($_SESSION['letter']) && in_array($mot[$i], $_SESSION['letter']))
+                    if (!empty($_SESSION[SessionKey::LetterChoose->value]) && in_array($mot[$i], $_SESSION[SessionKey::LetterChoose->value]))
                     {
                         echo "
                             <td id='$i'>$mot[$i]</td>
@@ -44,29 +44,29 @@
 
 
 <?php
-    $shot = $_SESSION['shot'];
+    $shot = $_SESSION[SessionKey::Shot->value];
     $connection = getConnection();
-    $_SESSION['wordFind'] = true;
+    $_SESSION[SessionKey::WordFind->value] = true;
     echo"<div class='nbShot'><p>Nombre de coups : $shot</p></div>";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if (!empty($_POST['letterChoose']) && strlen($_POST['letterChoose']) === 1){
 
-            if (!in_array(strtoupper($_POST['letterChoose']), $_SESSION['letter'])){
-                array_push($_SESSION['letter'], strtoupper($_POST['letterChoose']));
-                if(strpos(($_SESSION['word']), strtoupper($_POST['letterChoose'])) === false){
-                    $_SESSION['shot']--;
+            if (!in_array(strtoupper($_POST['letterChoose']), $_SESSION[SessionKey::LetterChoose->value])){
+                array_push($_SESSION[SessionKey::LetterChoose->value], strtoupper($_POST['letterChoose']));
+                if(strpos(($_SESSION[SessionKey::Word->value]), strtoupper($_POST['letterChoose'])) === false){
+                    $_SESSION[SessionKey::Shot->value]--;
                 }
                 
-                foreach(str_split($_SESSION['word']) as $letter){
-                    if (!in_array($letter, $_SESSION['letter'])){
-                        $_SESSION['wordFind'] = false;
+                foreach(str_split($_SESSION[SessionKey::Word->value]) as $letter){
+                    if (!in_array($letter, $_SESSION[SessionKey::LetterChoose->value])){
+                        $_SESSION[SessionKey::WordFind->value] = false;
                         break;
                     }
                 }
 
-                if (!$_SESSION['wordFind'] && $_SESSION['shot'] > 0){
+                if (!$_SESSION[SessionKey::WordFind->value] && $_SESSION[SessionKey::Shot->value] > 0){
                     header('Location: jeu.php?traitement=OK');
                     exit();
                 } else {
@@ -75,14 +75,14 @@
                     $stmt = $connection->prepare($sql);
                     
                     // Liaison des paramètres avec les valeurs
-                    $stmt->bindParam(1, $_SESSION['player1']);
-                    $stmt->bindParam(2, $_SESSION['player2']);
-                    $stmt->bindParam(3, $_SESSION['word']);
-                    $stmt->bindParam(4, $_SESSION['shotBase']);
-                    if($_SESSION['wordFind']===false){
-                        $stmt->bindParam(5, $_SESSION['player1']);
+                    $stmt->bindParam(1, $_SESSION[SessionKey::Player1->value]);
+                    $stmt->bindParam(2, $_SESSION[SessionKey::Player2->value]);
+                    $stmt->bindParam(3, $_SESSION[SessionKey::Word->value]);
+                    $stmt->bindParam(4, $_SESSION[SessionKey::ShotBase->value]);
+                    if($_SESSION[SessionKey::WordFind->value]===false){
+                        $stmt->bindParam(5, $_SESSION[SessionKey::Player1->value]);
                     } else {
-                        $stmt->bindParam(5, $_SESSION['player2']);
+                        $stmt->bindParam(5, $_SESSION[SessionKey::Player2->value]);
                     }
 
                     // Exécution de la requête
@@ -107,8 +107,8 @@
     }
 ?>
 <script>
-    let letterTable = <?php echo json_encode($_SESSION['letter']); ?>;
-    let wordToFind = <?php echo json_encode($_SESSION['word']); ?>;
+    let letterTable = <?php echo json_encode($_SESSION[SessionKey::LetterChoose->value]); ?>;
+    let wordToFind = <?php echo json_encode($_SESSION[SessionKey::Word->value]); ?>;
 
     letterTable.forEach(element => {
         let lettre = document.getElementById(element);

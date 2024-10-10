@@ -52,9 +52,9 @@
 <?php
    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (!empty($_POST['word']) && !empty($_POST['shot']) && $_POST['shot'] != 0){
-        $_SESSION['word'] = strtoupper($_POST['word']);
-        $_SESSION['shot'] = intval($_POST['shot']);
-        $_SESSION['shotBase'] = intval($_POST['shot']);
+        $_SESSION[SessionKey::Word->value] = strtoupper($_POST['word']);
+        $_SESSION[SessionKey::Shot->value] = intval($_POST['shot']);
+        $_SESSION[SessionKey::ShotBase->value] = intval($_POST['shot']);
         header('Location: jeu.php?traitement=OK');
         exit(0);
     } else {

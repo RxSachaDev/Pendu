@@ -2,22 +2,18 @@
     require_once('header.php');
     
     // Récupération des données de la session
-    $player1 = $_SESSION['player1'];
-    $player2 = $_SESSION['player2'];
-    $word = $_SESSION['word'];
-    $shot = $_SESSION['shot'];
+    $player1 = $_SESSION[SessionKey::Player1->value];
+    $player2 = $_SESSION[SessionKey::Player2->value];
 
     // Préparation de la requête en fonction du gagnant
-    if ($_SESSION['wordFind']){
+    if ($_SESSION[SessionKey::WordFind->value]){
         echo "<div class='result'>
                 <p>Bravo $player2, Vous avez gagné !</p>
             </div>";
-        $winner = $player2; // Le joueur 2 a gagné
     } else {
         echo "<div class='result'>
                 <p>Bravo $player1, Vous avez gagné !</p>
             </div>";
-        $winner = $player1; // Le joueur 1 a gagné
     }
 
     
