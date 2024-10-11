@@ -1,5 +1,15 @@
 <?php
     include('header.php');
+
+    enum SessionKey: string {
+        case Player1 = 'player1';
+        case Player2 = 'player2';
+        case Shot = 'shot';
+        case LetterChoose = 'letterChoose';
+        case WordFind = 'wordFind';
+        case ShotBase = 'shotBase';
+        case Word = 'word';
+    }
 ?>
 <div class='mainContainer'>
     <div class='playerForm'>
